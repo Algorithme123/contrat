@@ -1,0 +1,43 @@
+{{extend 'template.html'}} 
+
+{{ block contenu }}
+<br>
+<table class="table table-condensed">
+    <a class="btn btn-primary" href="{{=URL('default','create_client')}}"><i class="bi bi-plus"></i> Ajouter un client</a>
+    <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Adresse</th>
+            <th>Téléphone</th>
+            <th>E-mail</th>
+            <th style="text-align: center;">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{for client in clients:}}
+        <tr>
+            <td>
+                {{= client.name }}
+            </td>
+            <td>
+                {{= client.address }}
+            </td>
+            <td>
+                {{= client.telephone }}
+            </td>
+            <td>
+                {{= client.email }}
+            </td>
+            <td style="text-align: center;">
+                <a href="{{=URL('default', 'edit_client', args=[client.id])}}" class="btn btn-warning"><i class="bi bi-pencil"></i> Modifier</a>
+                <a href="{{=URL('default', 'delete_client', vars={'id': client.id})}}" class="btn btn-danger"><i class="bi bi-trash"></i> Supprimer</a>
+            </td>
+        </tr>
+        {{pass}}
+    </tbody>
+</table>
+{{ end }}
+
+{{  block  formulaire}}
+<!-- Vous pouvez ajouter ici le formulaire pour créer ou modifier un client -->
+{{ end }}
